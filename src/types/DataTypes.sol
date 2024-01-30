@@ -99,7 +99,7 @@ library Lockup {
 
 /// @notice Namespace for the structs used in {SablierV2LockupDynamic}.
 library LockupDynamic {
-    /// @notice Struct enc  apsulating the parameters for the {SablierV2LockupDynamic.createWithDurations} function.
+    /// @notice Struct encapsulating the parameters for the {SablierV2LockupDynamic.createWithDurations} function.
     /// @param sender The address streaming the assets, with the ability to cancel the stream. It doesn't have to be the
     /// same as `msg.sender`.
     /// @param recipient The address receiving the assets.
@@ -178,9 +178,9 @@ library LockupDynamic {
         uint40 duration;
     }
 
-    /// @notice Struct encapsulating all the data for a specific id, so that an integrator can obtain all informations
+    /// @notice Struct encapsulating all the data for a specific id, so that an integrator can obtain all information
     /// within one call to our contract.
-    /// @dev It cointains the same data as the `Lockup.Stream` struct, plus the segments.
+    /// @dev It contains the same data as the `Lockup.Stream` struct, plus the segments.
     struct Stream {
         address sender;
         uint40 startTime;
@@ -263,9 +263,9 @@ library LockupLinear {
         uint40 end;
     }
 
-    /// @notice Struct encapsulating all the data for a specific id, so that an integrator can obtain all informations
+    /// @notice Struct encapsulating all the data for a specific id, so that an integrator can obtain all information
     /// within one call to our contract.
-    /// @dev It cointains the same data as the `Lockup.Stream` struct, plus the range.
+    /// @dev It contains the same data as the `Lockup.Stream` struct, plus the range.
     struct Stream {
         address sender;
         uint40 startTime;
