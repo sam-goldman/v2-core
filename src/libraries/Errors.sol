@@ -148,7 +148,7 @@ library Errors {
     );
 
     /// @notice Thrown when trying to create a stream with more tranches than the maximum allowed.
-    error SablierV2LockupTranched_TrancheCountTooHigh(uint256);
+    error SablierV2LockupTranched_TrancheCountTooHigh(uint256 count);
 
     /// @notice Thrown when trying to create a stream with no tranches.
     error SablierV2LockupTranched_TrancheCountZero();
