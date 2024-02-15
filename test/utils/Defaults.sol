@@ -114,10 +114,6 @@ contract Defaults is Constants {
         return LockupLinear.Range({ start: START_TIME, cliff: CLIFF_TIME, end: END_TIME });
     }
 
-    function lockupTranchedRange() public view returns (LockupTranched.Range memory) {
-        return LockupTranched.Range({ start: START_TIME, end: END_TIME });
-    }
-
     function lockupLinearStream() public view returns (LockupLinear.StreamLL memory) {
         return LockupLinear.StreamLL({
             amounts: lockupAmounts(),
@@ -132,6 +128,10 @@ contract Defaults is Constants {
             startTime: START_TIME,
             wasCanceled: false
         });
+    }
+
+    function lockupTranchedRange() public view returns (LockupTranched.Range memory) {
+        return LockupTranched.Range({ start: START_TIME, end: END_TIME });
     }
 
     function lockupTranchedStream() public view returns (LockupTranched.StreamLT memory) {
