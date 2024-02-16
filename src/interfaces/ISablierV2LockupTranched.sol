@@ -55,7 +55,7 @@ interface ISablierV2LockupTranched is ISablierV2Lockup {
     /// @param streamId The stream id for the query.
     function getStream(uint256 streamId) external view returns (LockupTranched.StreamLT memory stream);
 
-    /// @notice Retrieves the tranches the protocol uses to compose the custom streaming curve.
+    /// @notice Retrieves the tranches the protocol uses to compose the custom distribution curve.
     /// @dev Reverts if `streamId` references a null stream.
     /// @param streamId The stream id for the query.
     function getTranches(uint256 streamId) external view returns (LockupTranched.Tranche[] memory tranches);

@@ -360,7 +360,7 @@ library LockupTranched {
     }
 
     /// @notice Tranche struct used in the Lockup Tranched stream.
-    /// @param amount The amount of assets to be streamed in this tranche, denoted in units of the asset's decimals.
+    /// @param amount The amount of assets to be unclocked in this tranche, denoted in units of the asset's decimals.
     /// @param timestamp The Unix timestamp indicating this tranche's end.
     struct Tranche {
         // slot 0
@@ -369,7 +369,7 @@ library LockupTranched {
     }
 
     /// @notice Tranche struct used at runtime in {SablierV2LockupTranched.createWithDurations}.
-    /// @param amount The amount of assets to be streamed in this tranche, denoted in units of the asset's decimals.
+    /// @param amount The amount of assets to be unclocked in this tranche, denoted in units of the asset's decimals.
     /// @param duration The time difference in seconds between this tranche and the previous one.
     struct TrancheWithDuration {
         uint128 amount;
