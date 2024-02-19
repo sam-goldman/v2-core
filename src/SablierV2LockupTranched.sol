@@ -4,8 +4,6 @@ pragma solidity >=0.8.22;
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import { PRBMathCastingUint128 as CastingUint128 } from "@prb/math/src/casting/Uint128.sol";
-import { PRBMathCastingUint40 as CastingUint40 } from "@prb/math/src/casting/Uint40.sol";
 import { UD60x18 } from "@prb/math/src/UD60x18.sol";
 
 import { SablierV2Lockup } from "./abstracts/SablierV2Lockup.sol";
@@ -39,8 +37,6 @@ contract SablierV2LockupTranched is
     ISablierV2LockupTranched, // 1 inherited component
     SablierV2Lockup // 14 inherited components
 {
-    using CastingUint128 for uint128;
-    using CastingUint40 for uint40;
     using SafeERC20 for IERC20;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -68,7 +64,7 @@ contract SablierV2LockupTranched is
         ISablierV2NFTDescriptor initialNFTDescriptor,
         uint256 maxTrancheCount
     )
-        ERC721("Sablier V2 Lockup Tranche NFT", "SAB-V2-LOCKUP-DYN")
+        ERC721("Sablier V2 Lockup Tranched NFT", "SAB-V2-LOCKUP-TRA")
         SablierV2Lockup(initialAdmin, initialComptroller, initialNFTDescriptor)
     {
         MAX_TRANCHE_COUNT = maxTrancheCount;
@@ -98,6 +94,7 @@ contract SablierV2LockupTranched is
         notNull(streamId)
         returns (LockupTranched.StreamLT memory stream)
     {
+        // Retrieve the lockup stream from storage.
         Lockup.Stream memory lockupStream = _streams[streamId];
 
         // Settled streams cannot be canceled.
