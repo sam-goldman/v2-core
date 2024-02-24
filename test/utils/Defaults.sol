@@ -250,19 +250,6 @@ contract Defaults is Constants {
         });
     }
 
-    function createWithDurationsLT() public view returns (LockupTranched.CreateWithDurations memory) {
-        return LockupTranched.CreateWithDurations({
-            sender: users.sender,
-            recipient: users.recipient,
-            totalAmount: TOTAL_AMOUNT,
-            asset: asset,
-            cancelable: true,
-            transferable: true,
-            tranches: tranchesWithDurations(),
-            broker: broker()
-        });
-    }
-
     function createWithDurationsLL() public view returns (LockupLinear.CreateWithDurations memory) {
         return LockupLinear.CreateWithDurations({
             sender: users.sender,
@@ -272,6 +259,19 @@ contract Defaults is Constants {
             cancelable: true,
             transferable: true,
             durations: durations(),
+            broker: broker()
+        });
+    }
+
+    function createWithDurationsLT() public view returns (LockupTranched.CreateWithDurations memory) {
+        return LockupTranched.CreateWithDurations({
+            sender: users.sender,
+            recipient: users.recipient,
+            totalAmount: TOTAL_AMOUNT,
+            asset: asset,
+            cancelable: true,
+            transferable: true,
+            tranches: tranchesWithDurations(),
             broker: broker()
         });
     }

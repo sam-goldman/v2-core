@@ -97,7 +97,7 @@ library Errors {
     /// @notice Thrown when trying to create a stream with no segments.
     error SablierV2LockupDynamic_SegmentCountZero();
 
-    /// @notice Thrown when trying to create a stream with unordered segment timestampts.
+    /// @notice Thrown when trying to create a stream with unordered segment timestamps.
     error SablierV2LockupDynamic_SegmentTimestampsNotOrdered(
         uint256 index, uint40 previousTimestamp, uint40 currentTimestamp
     );
@@ -153,7 +153,7 @@ library Errors {
     /// @notice Thrown when trying to create a stream with no tranches.
     error SablierV2LockupTranched_TrancheCountZero();
 
-    /// @notice Thrown when trying to create a stream with unordered tranche timestampts.
+    /// @notice Thrown when trying to create a stream with unordered tranche timestamps.
     error SablierV2LockupTranched_TrancheTimestampsNotOrdered(
         uint256 index, uint40 previousTimestamp, uint40 currentTimestamp
     );
