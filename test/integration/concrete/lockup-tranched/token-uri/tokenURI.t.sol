@@ -20,12 +20,12 @@ import { LockupTranched_Integration_Concrete_Test } from "../LockupTranched.t.so
 contract TokenURI_LockupTranched_Integration_Concrete_Test is LockupTranched_Integration_Concrete_Test {
     using LibString for string;
 
-    address internal constant LOCKUP_Tranched = 0xDB25A7b768311dE128BBDa7B8426c3f9C74f3240;
+    address internal constant LOCKUP_TRANCHED = 0xDB25A7b768311dE128BBDa7B8426c3f9C74f3240;
     uint256 internal defaultStreamId;
 
     /// @dev To make these tests noninvasive, they are run only when the contract address matches the hard coded value.
     modifier skipOnMismatch() {
-        if (address(lockupTranched) == LOCKUP_Tranched) {
+        if (address(lockupTranched) == LOCKUP_TRANCHED) {
             _;
         } else {
             console2.log(StdStyle.yellow('Warning: "lockupTranched.tokenURI" tests skipped due to address mismatch'));

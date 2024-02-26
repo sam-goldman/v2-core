@@ -68,7 +68,7 @@ contract StreamedAmountOf_LockupTranched_Integration_Concrete_Test is
         _;
     }
 
-    function test_StreamedAmountOf_CurrentTimestampNot1st()
+    function test_StreamedAmountOf()
         external
         givenNotNull
         givenStreamHasNotBeenCanceled

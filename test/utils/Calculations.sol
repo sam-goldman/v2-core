@@ -114,7 +114,7 @@ abstract contract Calculations {
     }
 
     /// @dev Helper function that replicates the logic of {SablierV2LockupTranched._calculateStreamedAmount}.
-    function calculateStreamedAmountForTranched(
+    function calculateStreamedAmountForTranches(
         uint40 currentTime,
         LockupTranched.Tranche[] memory tranches,
         uint128 depositAmount

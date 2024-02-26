@@ -93,9 +93,8 @@ abstract contract Fuzzers is Constants, Utils {
         // Fuzz the other segment amounts by bounding from 0.
         unchecked {
             for (uint256 i = 1; i < segmentCount; ++i) {
-                uint128 segmentAmount = boundUint128(segments[i].amount, 0, maxSegmentAmount);
-                segments[i].amount = segmentAmount;
-                estimatedDepositAmount += segmentAmount;
+                segments[i].amount = boundUint128(segments[i].amount, 0, maxSegmentAmount);
+                estimatedDepositAmount += segments[i].amount;
             }
         }
 
@@ -241,9 +240,8 @@ abstract contract Fuzzers is Constants, Utils {
         // Fuzz the other tranche amounts by bounding from 0.
         unchecked {
             for (uint256 i = 1; i < trancheCount; ++i) {
-                uint128 trancheAmount = boundUint128(tranches[i].amount, 0, maxTrancheAmount);
-                tranches[i].amount = trancheAmount;
-                estimatedDepositAmount += trancheAmount;
+                tranches[i].amount = boundUint128(tranches[i].amount, 0, maxTrancheAmount);
+                estimatedDepositAmount += tranches[i].amount;
             }
         }
 

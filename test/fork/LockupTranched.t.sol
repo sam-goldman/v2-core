@@ -37,7 +37,6 @@ abstract contract LockupTranched_Fork_Test is Fork_Test {
         address sender;
         address recipient;
         uint128 withdrawAmount;
-        bool transferable;
         UD60x18 protocolFee;
         uint40 startTime;
         uint40 warpTimestamp;
@@ -120,7 +119,6 @@ abstract contract LockupTranched_Fork_Test is Fork_Test {
         params.broker.fee = _bound(params.broker.fee, 0, MAX_FEE);
         params.protocolFee = _bound(params.protocolFee, 0, MAX_FEE);
         params.startTime = boundUint40(params.startTime, 0, defaults.START_TIME());
-        params.transferable = true;
 
         // Fuzz the tranche timestamps.
         fuzzTrancheTimestamps(params.tranches, params.startTime);
@@ -172,7 +170,7 @@ abstract contract LockupTranched_Fork_Test is Fork_Test {
             amounts: vars.createAmounts,
             asset: ASSET,
             cancelable: true,
-            transferable: params.transferable,
+            transferable: true,
             tranches: params.tranches,
             range: vars.range,
             broker: params.broker.account
@@ -186,7 +184,7 @@ abstract contract LockupTranched_Fork_Test is Fork_Test {
                 totalAmount: vars.totalAmount,
                 asset: ASSET,
                 cancelable: true,
-                transferable: params.transferable,
+                transferable: true,
                 startTime: params.startTime,
                 tranches: params.tranches,
                 broker: params.broker

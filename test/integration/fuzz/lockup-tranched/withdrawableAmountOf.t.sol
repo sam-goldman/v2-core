@@ -54,7 +54,7 @@ contract WithdrawableAmountOf_LockupTranched_Integration_Fuzz_Test is
         // Run the test.
         uint128 actualWithdrawableAmount = lockupTranched.withdrawableAmountOf(streamId);
         uint128 expectedWithdrawableAmount =
-            calculateStreamedAmountForTranched(currentTime, defaults.tranches(), defaults.DEPOSIT_AMOUNT());
+            calculateStreamedAmountForTranches(currentTime, defaults.tranches(), defaults.DEPOSIT_AMOUNT());
         assertEq(actualWithdrawableAmount, expectedWithdrawableAmount, "withdrawableAmount");
     }
 
@@ -87,7 +87,7 @@ contract WithdrawableAmountOf_LockupTranched_Integration_Fuzz_Test is
 
         // Bound the withdraw amount.
         uint128 streamedAmount =
-            calculateStreamedAmountForTranched(currentTime, defaults.tranches(), defaults.DEPOSIT_AMOUNT());
+            calculateStreamedAmountForTranches(currentTime, defaults.tranches(), defaults.DEPOSIT_AMOUNT());
         withdrawAmount = boundUint128(withdrawAmount, 1, streamedAmount);
 
         // Create the stream with a custom total amount. The broker fee is disabled so that it doesn't interfere with

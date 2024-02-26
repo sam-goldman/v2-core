@@ -150,33 +150,33 @@ contract Defaults is Constants {
         });
     }
 
-    function maxSegments() public view returns (LockupDynamic.Segment[] memory maxSegments_) {
-        uint128 amount = DEPOSIT_AMOUNT / uint128(MAX_SEGMENT_COUNT);
-        UD2x18 exponent = ud2x18(2.71e18);
+    // function maxSegments() public view returns (LockupDynamic.Segment[] memory maxSegments_) {
+    //     uint128 amount = DEPOSIT_AMOUNT / uint128(MAX_SEGMENT_COUNT);
+    //     UD2x18 exponent = ud2x18(2.71e18);
 
-        // Generate a bunch of segments with the same amount, same exponent, and with timestamps evenly spread apart.
-        maxSegments_ = new LockupDynamic.Segment[](MAX_SEGMENT_COUNT);
-        for (uint40 i = 0; i < MAX_SEGMENT_COUNT; ++i) {
-            maxSegments_[i] = (
-                LockupDynamic.Segment({
-                    amount: amount,
-                    exponent: exponent,
-                    timestamp: START_TIME + MAX_SEGMENT_DURATION * (i + 1)
-                })
-            );
-        }
-    }
+    //     // Generate a bunch of segments with the same amount, same exponent, and with timestamps evenly spread apart.
+    //     maxSegments_ = new LockupDynamic.Segment[](MAX_SEGMENT_COUNT);
+    //     for (uint40 i = 0; i < MAX_SEGMENT_COUNT; ++i) {
+    //         maxSegments_[i] = (
+    //             LockupDynamic.Segment({
+    //                 amount: amount,
+    //                 exponent: exponent,
+    //                 timestamp: START_TIME + MAX_SEGMENT_DURATION * (i + 1)
+    //             })
+    //         );
+    //     }
+    // }
 
-    function maxTranches() public view returns (LockupTranched.Tranche[] memory maxTranches_) {
-        uint128 amount = DEPOSIT_AMOUNT / uint128(MAX_TRANCHE_COUNT);
+    // function maxTranches() public view returns (LockupTranched.Tranche[] memory maxTranches_) {
+    //     uint128 amount = DEPOSIT_AMOUNT / uint128(MAX_TRANCHE_COUNT);
 
-        // Generate a bunch of tranches with the same amount and with timestamps evenly spread apart.
-        maxTranches_ = new LockupTranched.Tranche[](MAX_TRANCHE_COUNT);
-        for (uint40 i = 0; i < MAX_TRANCHE_COUNT; ++i) {
-            maxTranches_[i] =
-                LockupTranched.Tranche({ amount: amount, timestamp: START_TIME + MAX_SEGMENT_DURATION * (i + 1) });
-        }
-    }
+    //     // Generate a bunch of tranches with the same amount and with timestamps evenly spread apart.
+    //     maxTranches_ = new LockupTranched.Tranche[](MAX_TRANCHE_COUNT);
+    //     for (uint40 i = 0; i < MAX_TRANCHE_COUNT; ++i) {
+    //         maxTranches_[i] =
+    //             LockupTranched.Tranche({ amount: amount, timestamp: START_TIME + MAX_SEGMENT_DURATION * (i + 1) });
+    //     }
+    // }
 
     function segments() public view returns (LockupDynamic.Segment[] memory segments_) {
         segments_ = new LockupDynamic.Segment[](2);
@@ -220,17 +220,13 @@ contract Defaults is Constants {
 
     function tranchesWithDurations()
         public
-        view
+        pure
         returns (LockupTranched.TrancheWithDuration[] memory tranchesWithDurations_)
     {
-        LockupTranched.Tranche[] memory tranches_ = tranches();
         tranchesWithDurations_ = new LockupTranched.TrancheWithDuration[](3);
-        tranchesWithDurations_[0] =
-            LockupTranched.TrancheWithDuration({ amount: tranches_[0].amount, duration: 2500 seconds });
-        tranchesWithDurations_[1] =
-            LockupTranched.TrancheWithDuration({ amount: tranches_[1].amount, duration: 100 seconds });
-        tranchesWithDurations_[2] =
-            LockupTranched.TrancheWithDuration({ amount: tranches_[2].amount, duration: 7400 seconds });
+        tranchesWithDurations_[0] = LockupTranched.TrancheWithDuration({ amount: 2500e18, duration: 2500 seconds });
+        tranchesWithDurations_[1] = LockupTranched.TrancheWithDuration({ amount: 100e18, duration: 100 seconds });
+        tranchesWithDurations_[2] = LockupTranched.TrancheWithDuration({ amount: 7400e18, duration: 7400 seconds });
     }
 
     /*//////////////////////////////////////////////////////////////////////////

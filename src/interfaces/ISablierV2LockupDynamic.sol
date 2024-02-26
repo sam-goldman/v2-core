@@ -44,8 +44,7 @@ interface ISablierV2LockupDynamic is ISablierV2Lockup {
                                  CONSTANT FUNCTIONS
     //////////////////////////////////////////////////////////////////////////*/
 
-    /// @notice Retrieves the stream's range, which is a struct containing (i) the stream's start time and (ii) end
-    /// time, both as Unix timestamps.
+    /// @notice Retrieves the stream's range, which is a struct documented in {DataTypes}.
     /// @dev Reverts if `streamId` references a null stream.
     /// @param streamId The stream id for the query.
     function getRange(uint256 streamId) external view returns (LockupDynamic.Range memory range);
