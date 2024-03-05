@@ -19,8 +19,7 @@ contract Precompiles {
                                      CONSTANTS
     //////////////////////////////////////////////////////////////////////////*/
 
-    uint256 internal constant MAX_SEGMENT_COUNT = 300;
-    uint256 internal constant MAX_TRANCHE_COUNT = 300;
+    uint256 internal constant MAX_COUNT = 500;
 
     /*//////////////////////////////////////////////////////////////////////////
                                      BYTECODES
@@ -64,7 +63,7 @@ contract Precompiles {
         public
         returns (ISablierV2LockupDynamic lockupDynamic)
     {
-        uint256 maxSegmentCount = MAX_SEGMENT_COUNT;
+        uint256 maxSegmentCount = MAX_COUNT;
         lockupDynamic = deployLockupDynamic(initialAdmin, initialComptroller, maxSegmentCount);
     }
 
@@ -92,7 +91,7 @@ contract Precompiles {
         public
         returns (ISablierV2LockupDynamic lockupDynamic)
     {
-        lockupDynamic = deployLockupDynamic(initialAdmin, initialComptroller, nftDescriptor, MAX_SEGMENT_COUNT);
+        lockupDynamic = deployLockupDynamic(initialAdmin, initialComptroller, nftDescriptor, MAX_COUNT);
     }
 
     /// @notice Deploys {SablierV2LockupDynamic} from precompiled bytecode.
@@ -160,7 +159,7 @@ contract Precompiles {
         public
         returns (ISablierV2LockupTranched lockupTranched)
     {
-        uint256 maxTrancheCount = MAX_TRANCHE_COUNT;
+        uint256 maxTrancheCount = MAX_COUNT;
         lockupTranched = deployLockupTranched(initialAdmin, initialComptroller, maxTrancheCount);
     }
 
@@ -188,7 +187,7 @@ contract Precompiles {
         public
         returns (ISablierV2LockupTranched lockupTranched)
     {
-        lockupTranched = deployLockupTranched(initialAdmin, initialComptroller, nftDescriptor, MAX_TRANCHE_COUNT);
+        lockupTranched = deployLockupTranched(initialAdmin, initialComptroller, nftDescriptor, MAX_COUNT);
     }
 
     /// @notice Deploys {SablierV2LockupTranched} from precompiled bytecode.

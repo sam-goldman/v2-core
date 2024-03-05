@@ -67,7 +67,7 @@ contract CreateWithTimestamps_LockupTranched_Integration_Concrete_Test is
         whenDepositAmountNotZero
         whenTrancheCountNotZero
     {
-        uint256 trancheCount = defaults.MAX_SEGMENT_COUNT() + 1;
+        uint256 trancheCount = defaults.MAX_COUNT() + 1;
         LockupTranched.Tranche[] memory tranches = new LockupTranched.Tranche[](trancheCount);
         vm.expectRevert(
             abi.encodeWithSelector(Errors.SablierV2LockupTranched_TrancheCountTooHigh.selector, trancheCount)

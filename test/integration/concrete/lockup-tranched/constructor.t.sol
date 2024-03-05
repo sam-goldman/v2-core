@@ -16,7 +16,7 @@ contract Constructor_LockupTranched_Integration_Concrete_Test is LockupTranched_
             initialAdmin: users.admin,
             initialComptroller: comptroller,
             initialNFTDescriptor: nftDescriptor,
-            maxTrancheCount: defaults.MAX_TRANCHE_COUNT()
+            maxTrancheCount: defaults.MAX_COUNT()
         });
 
         // {SablierV2Base.constructor}
@@ -39,7 +39,7 @@ contract Constructor_LockupTranched_Integration_Concrete_Test is LockupTranched_
 
         // {SablierV2lockupTranched.constructor}
         uint256 actualMaxTrancheCount = constructedLockupTranched.MAX_TRANCHE_COUNT();
-        uint256 expectedMaxTrancheCount = defaults.MAX_TRANCHE_COUNT();
-        assertEq(actualMaxTrancheCount, expectedMaxTrancheCount, "MAX_TRANCHE_COUNT");
+        uint256 expectedMaxTrancheCount = defaults.MAX_COUNT();
+        assertEq(actualMaxTrancheCount, expectedMaxTrancheCount, "MAX_COUNT");
     }
 }

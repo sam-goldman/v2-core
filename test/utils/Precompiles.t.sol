@@ -34,7 +34,7 @@ contract Precompiles_Test is Base_Test {
         ISablierV2Comptroller comptroller = precompiles.deployComptroller(users.admin);
         address actualLockupDynamic = address(precompiles.deployLockupDynamic(users.admin, comptroller, nftDescriptor));
         address expectedLockupDynamic =
-            address(deployOptimizedLockupDynamic(users.admin, comptroller, nftDescriptor, defaults.MAX_SEGMENT_COUNT()));
+            address(deployOptimizedLockupDynamic(users.admin, comptroller, nftDescriptor, defaults.MAX_COUNT()));
         bytes memory expectedLockupDynamicCode =
             adjustBytecode(expectedLockupDynamic.code, expectedLockupDynamic, actualLockupDynamic);
         assertEq(actualLockupDynamic.code, expectedLockupDynamicCode, "bytecodes mismatch");
@@ -53,9 +53,8 @@ contract Precompiles_Test is Base_Test {
         ISablierV2Comptroller comptroller = precompiles.deployComptroller(users.admin);
         address actualLockupTranched =
             address(precompiles.deployLockupTranched(users.admin, comptroller, nftDescriptor));
-        address expectedLockupTranched = address(
-            deployOptimizedLockupTranched(users.admin, comptroller, nftDescriptor, defaults.MAX_TRANCHE_COUNT())
-        );
+        address expectedLockupTranched =
+            address(deployOptimizedLockupTranched(users.admin, comptroller, nftDescriptor, defaults.MAX_COUNT()));
         bytes memory expectedLockupTranchedCode =
             adjustBytecode(expectedLockupTranched.code, expectedLockupTranched, actualLockupTranched);
         assertEq(actualLockupTranched.code, expectedLockupTranchedCode, "bytecodes mismatch");
@@ -82,7 +81,7 @@ contract Precompiles_Test is Base_Test {
             ISablierV2LockupLinear expectedLockupLinear,
             ISablierV2LockupTranched expectedLockupTranched,
             ISablierV2NFTDescriptor expectedNFTDescriptor
-        ) = deployOptimizedCore(users.admin, defaults.MAX_SEGMENT_COUNT(), defaults.MAX_TRANCHE_COUNT());
+        ) = deployOptimizedCore(users.admin, defaults.MAX_COUNT(), defaults.MAX_COUNT());
 
         bytes memory expectedLockupDynamicCode = adjustBytecode(
             address(expectedLockupDynamic).code, address(expectedLockupDynamic), address(actualLockupDynamic)

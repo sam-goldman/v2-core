@@ -30,7 +30,7 @@ contract CreateWithTimestamps_LockupTranched_Integration_Fuzz_Test is
         whenDepositAmountNotZero
         whenTrancheCountNotZero
     {
-        trancheCount = _bound(trancheCount, defaults.MAX_SEGMENT_COUNT() + 1 seconds, defaults.MAX_SEGMENT_COUNT() * 10);
+        trancheCount = _bound(trancheCount, defaults.MAX_COUNT() + 1 seconds, defaults.MAX_COUNT() * 10);
         LockupTranched.Tranche[] memory tranches = new LockupTranched.Tranche[](trancheCount);
         vm.expectRevert(
             abi.encodeWithSelector(Errors.SablierV2LockupTranched_TrancheCountTooHigh.selector, trancheCount)

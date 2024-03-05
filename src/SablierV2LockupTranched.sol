@@ -34,7 +34,7 @@ import { Lockup, LockupTranched } from "./types/DataTypes.sol";
 /// @title SablierV2LockupTranched
 /// @notice See the documentation in {ISablierV2LockupTranched}.
 contract SablierV2LockupTranched is
-    ISablierV2LockupTranched, // 1 inherited component
+    ISablierV2LockupTranched, // 6 inherited components
     SablierV2Lockup // 14 inherited components
 {
     using SafeERC20 for IERC20;

@@ -130,14 +130,12 @@ abstract contract Base_Test is Assertions, Calculations, Constants, DeployOptimi
         if (!isTestOptimizedProfile()) {
             comptroller = new SablierV2Comptroller(users.admin);
             nftDescriptor = new SablierV2NFTDescriptor();
-            lockupDynamic =
-                new SablierV2LockupDynamic(users.admin, comptroller, nftDescriptor, defaults.MAX_SEGMENT_COUNT());
+            lockupDynamic = new SablierV2LockupDynamic(users.admin, comptroller, nftDescriptor, defaults.MAX_COUNT());
             lockupLinear = new SablierV2LockupLinear(users.admin, comptroller, nftDescriptor);
-            lockupTranched =
-                new SablierV2LockupTranched(users.admin, comptroller, nftDescriptor, defaults.MAX_TRANCHE_COUNT());
+            lockupTranched = new SablierV2LockupTranched(users.admin, comptroller, nftDescriptor, defaults.MAX_COUNT());
         } else {
             (comptroller, lockupDynamic, lockupLinear, lockupTranched, nftDescriptor) =
-                deployOptimizedCore(users.admin, defaults.MAX_SEGMENT_COUNT(), defaults.MAX_TRANCHE_COUNT());
+                deployOptimizedCore(users.admin, defaults.MAX_COUNT(), defaults.MAX_COUNT());
         }
 
         vm.label({ account: address(comptroller), newLabel: "Comptroller" });

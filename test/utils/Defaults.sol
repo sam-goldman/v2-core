@@ -23,17 +23,16 @@ contract Defaults is Constants {
     uint40 public constant CLIFF_DURATION = 2500 seconds;
     uint128 public constant DEPOSIT_AMOUNT = 10_000e18;
     uint40 public immutable END_TIME;
-    uint256 public constant MAX_SEGMENT_COUNT = 300;
+    uint256 public constant MAX_COUNT = 500;
     uint40 public immutable MAX_SEGMENT_DURATION;
-    uint256 public constant MAX_TRANCHE_COUNT = 300;
     UD60x18 public constant PROTOCOL_FEE = UD60x18.wrap(0.001e18); // 0.1%
     uint128 public constant PROTOCOL_FEE_AMOUNT = 10.040160642570281124e18; // 0.1% of total amount
     uint128 public constant REFUND_AMOUNT = DEPOSIT_AMOUNT - CLIFF_AMOUNT;
     uint256 public SEGMENT_COUNT;
-    uint256 public TRANCHE_COUNT;
     uint40 public immutable START_TIME;
     uint128 public constant TOTAL_AMOUNT = 10_040.160642570281124497e18; // deposit / (1 - fee)
     uint40 public constant TOTAL_DURATION = 10_000 seconds;
+    uint256 public TRANCHE_COUNT;
     uint128 public constant WITHDRAW_AMOUNT = 2600e18;
     uint40 public immutable WARP_26_PERCENT; // 26% of the way through the stream
 
@@ -48,7 +47,7 @@ contract Defaults is Constants {
         START_TIME = uint40(MAY_1_2023) + 2 days;
         CLIFF_TIME = START_TIME + CLIFF_DURATION;
         END_TIME = START_TIME + TOTAL_DURATION;
-        MAX_SEGMENT_DURATION = TOTAL_DURATION / uint40(MAX_SEGMENT_COUNT);
+        MAX_SEGMENT_DURATION = TOTAL_DURATION / uint40(MAX_COUNT);
         SEGMENT_COUNT = 2;
         TRANCHE_COUNT = 3;
         WARP_26_PERCENT = START_TIME + CLIFF_DURATION + 100 seconds;
@@ -149,34 +148,6 @@ contract Defaults is Constants {
             wasCanceled: false
         });
     }
-
-    // function maxSegments() public view returns (LockupDynamic.Segment[] memory maxSegments_) {
-    //     uint128 amount = DEPOSIT_AMOUNT / uint128(MAX_SEGMENT_COUNT);
-    //     UD2x18 exponent = ud2x18(2.71e18);
-
-    //     // Generate a bunch of segments with the same amount, same exponent, and with timestamps evenly spread apart.
-    //     maxSegments_ = new LockupDynamic.Segment[](MAX_SEGMENT_COUNT);
-    //     for (uint40 i = 0; i < MAX_SEGMENT_COUNT; ++i) {
-    //         maxSegments_[i] = (
-    //             LockupDynamic.Segment({
-    //                 amount: amount,
-    //                 exponent: exponent,
-    //                 timestamp: START_TIME + MAX_SEGMENT_DURATION * (i + 1)
-    //             })
-    //         );
-    //     }
-    // }
-
-    // function maxTranches() public view returns (LockupTranched.Tranche[] memory maxTranches_) {
-    //     uint128 amount = DEPOSIT_AMOUNT / uint128(MAX_TRANCHE_COUNT);
-
-    //     // Generate a bunch of tranches with the same amount and with timestamps evenly spread apart.
-    //     maxTranches_ = new LockupTranched.Tranche[](MAX_TRANCHE_COUNT);
-    //     for (uint40 i = 0; i < MAX_TRANCHE_COUNT; ++i) {
-    //         maxTranches_[i] =
-    //             LockupTranched.Tranche({ amount: amount, timestamp: START_TIME + MAX_SEGMENT_DURATION * (i + 1) });
-    //     }
-    // }
 
     function segments() public view returns (LockupDynamic.Segment[] memory segments_) {
         segments_ = new LockupDynamic.Segment[](2);
