@@ -119,14 +119,14 @@ abstract contract Fuzzers is Constants, Utils {
     }
 
     /// @dev Fuzzes the durations.
-    function fuzzSegmentDurations(LockupDynamic.SegmentWithDuration[] memory segments) internal pure {
+    function fuzzSegmentDurations(LockupDynamic.SegmentWithDuration[] memory segments) internal view {
         unchecked {
             // Precompute the first segment duration.
             segments[0].duration = uint40(_bound(segments[0].duration, 1, 100));
 
             // Bound the durations so that none is zero and the calculations don't overflow.
             uint256 durationCount = segments.length;
-            uint40 maxDuration = (MAX_UNIX_TIMESTAMP - segments[0].duration) / uint40(durationCount);
+            uint40 maxDuration = (MAX_UNIX_TIMESTAMP - getBlockTimestamp()) / uint40(durationCount);
             for (uint256 i = 1; i < durationCount; ++i) {
                 segments[i].duration = boundUint40(segments[i].duration, 1, maxDuration);
             }
@@ -266,14 +266,14 @@ abstract contract Fuzzers is Constants, Utils {
     }
 
     /// @dev Fuzzes the durations.
-    function fuzzTrancheDurations(LockupTranched.TrancheWithDuration[] memory tranches) internal pure {
+    function fuzzTrancheDurations(LockupTranched.TrancheWithDuration[] memory tranches) internal view {
         unchecked {
             // Precompute the first tranche duration.
             tranches[0].duration = uint40(_bound(tranches[0].duration, 1, 100));
 
             // Bound the durations so that none is zero and the calculations don't overflow.
             uint256 durationCount = tranches.length;
-            uint40 maxDuration = (MAX_UNIX_TIMESTAMP - tranches[0].duration) / uint40(durationCount);
+            uint40 maxDuration = (MAX_UNIX_TIMESTAMP - getBlockTimestamp()) / uint40(durationCount);
             for (uint256 i = 1; i < durationCount; ++i) {
                 tranches[i].duration = boundUint40(tranches[i].duration, 1, maxDuration);
             }
